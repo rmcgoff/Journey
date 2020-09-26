@@ -5,12 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:background="@android:color/transparent"
+    android:layout_height="wrap_content">
 
-    <android.support.constraint.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="12dp"
+        android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/trip_list_item_shape">
+        android:layout_height="wrap_content">
+
 
         <TextView
             android:id="@+id/tripName"
@@ -34,7 +43,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tripName"
             tools:text="IN 7 DAYS" />
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -71,7 +80,7 @@
                 app:layout_constraintHorizontal_bias="0.533"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="AUG" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/imageView"
@@ -133,7 +142,10 @@
 
         </RelativeLayout>
 
-    </android.support.constraint.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 
 

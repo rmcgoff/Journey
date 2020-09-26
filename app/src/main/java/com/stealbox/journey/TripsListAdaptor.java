@@ -1,10 +1,10 @@
 package com.stealbox.journey;
 
-import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.recyclerview.extensions.ListAdapter;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,25 +14,44 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TripsListAdaptor extends ArrayAdapter<TripItem> {
+public class TripsListAdaptor extends RecyclerView.Adapter<TripsListAdaptor.ViewHolder> {
     private Context mContext;
-    private List<TripItem> tripItems = new ArrayList<>();
+    private List<TripItem> tripItems;
 
     public TripsListAdaptor(Context context, ArrayList<TripItem> list) {
-        super(context, 0, list);
+        this.mContext = context;
         tripItems = list;
     }
 
+
+
+    @NonNull
     @Override
-    public View getView(int position, View tripListItem, @NonNull ViewGroup parent) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.trip_list_item, parent, false);
+        return new ViewHolder(v);
+    }
 
-        if(tripListItem == null){
-            tripListItem = LayoutInflater.from(mContext).inflate(R.layout.trip_list_item,parent,false);
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.itemView.setTag(position);
+        TripItem trip = tripItems.get(position);
+        holder.tripName.setText(trip.getTripName());
+    }
+
+    @Override
+    public int getItemCount() {
+        return tripItems.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+
+        public TextView tripName;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tripName = itemView.findViewById(R.id.tripName);
+            //set up other shit in here!!
         }
-
-        TextView tripName = tripListItem.findViewById(R.id.tripName);
-
-        tripName.setText(tripItems.get(position).getTripName());
-        return tripListItem;
     }
 }
